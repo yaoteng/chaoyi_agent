@@ -1,0 +1,14 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# logs / temp
+*.log
+*.tmp
+
+# node (若未来引入构建)
+node_modules/
+
+# local env
+.env
+.env.local
