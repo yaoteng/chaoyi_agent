@@ -4,6 +4,7 @@
 > 让每一个小社群，都能拥有自己的「数字社工 / 数字志愿者」。
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/yaoteng/chaoyi_agent?style=social)](https://github.com/yaoteng/chaoyi_agent)
 [![Skills 1.0](https://img.shields.io/badge/standard-Skills%201.0-blue.svg)](https://agentskills.io)
 [![MCP](https://img.shields.io/badge/protocol-MCP%200.4-blue.svg)](https://modelcontextprotocol.io)
 
@@ -78,27 +79,22 @@ chaoyi_agent/
 
 ## 仓库（已上线）
 
-🔗 **https://github.com/yaoteng/chaoyi_agent** —— 公开仓库已创建（当前待首次 push 代码）。
+🔗 **https://github.com/yaoteng/chaoyi_agent** —— 公开仓库，代码 / MIT License / v0.1.0 Release 均已上线。
 
-把本地内容推上去并补齐元信息：
+> ⚠️ 若你看到仓库**描述（description）为空、没有 Topics 标签**，在本地项目目录跑下面这条补齐（只需一次，需 `gh auth login`）：
+>
+> ```bash
+> gh repo edit yaoteng/chaoyi_agent \
+>   --description "面向开源社区的 Agent/Skill 工具箱 + 社区 agent 化改造方法论。5 个开箱即用社群 Skill，兼容 Skills 1.0 + MCP 0.4，跨宿主运行，MIT。" \
+>   --homepage "https://github.com/yaoteng/chaoyi_agent" \
+>   --add-topic ai-agents --add-topic skills --add-topic mcp --add-topic open-source \
+>   --add-topic community --add-topic developer-tools --add-topic llm --add-topic automation \
+>   --add-topic chinese --add-topic agent-framework --add-topic self-hosted
+> ```
+>
+> 这样 GitHub 搜索与社媒卡片才能正确曝光——**发帖冲星前务必先执行**。
 
-```bash
-# 1) 首次提交并推送到已建好的仓库
-git init && git add -A && git commit -m "feat: 潮驿 Agent skills 库首发 v0.1.0"
-git branch -M main
-git remote add origin https://github.com/yaoteng/chaoyi_agent.git
-git push -u origin main
-
-# 2) 补齐仓库元信息 + 首个 Release（需 gh auth login）
-gh repo edit yaoteng/chaoyi_agent \
-  --description "面向开源社区的 Agent/Skill 工具箱 + 社区 agent 化改造方法论。5 个开箱即用社群 Skill，兼容 Skills 1.0 + MCP 0.4，跨宿主运行，MIT。" \
-  --homepage "https://github.com/yaoteng/chaoyi_agent" \
-  --add-topic agent --add-topic skills --add-topic mcp --add-topic open-source \
-  --add-topic community --add-topic automation --add-topic claude --add-topic cursor --add-topic self-hosted
-gh release create v0.1.0 --title "v0.1.0 · 潮驿 Agent Skills 库首发" --notes "首发 5 个社群 Skill..."
-```
-
-或一键运行发布脚本（已对「仓库已存在」做健壮处理）：`bash scripts/publish_to_github.sh`。
+或重跑发布脚本（已对「仓库已存在」做健壮处理，会自动补 description + topics）：`bash scripts/publish_to_github.sh`。
 
 ## 路线图
 
