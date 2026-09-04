@@ -8,7 +8,7 @@
 设计原则：
 - **零依赖**：仅用 Python 标准库（无需 pip install）。
 - **协议对齐**：实现 MCP 的最小可用子集（initialize / tools/list / tools/call），
-  使用 stdio + JSON-RPC 2.0 的 Content-Length 分帧（与官方 SDK 互通）。
+  使用 stdio + 换行分隔的 JSON-RPC 2.0 消息（与官方 SDK 互通）。
 - **只读暴露**：网关只把 Skill 的指令文本返回给模型，本身不执行任何对外动作，
   破坏性操作仍由宿主/人在回路（HITL）控制——与 Skill 的 Guardrails 一致。
 
@@ -95,34 +95,24 @@ def load_skills():
 _SKILLS = load_skills()
 
 
-# ---- JSON-RPC / stdio 分帧 ----
+# ---- JSON-RPC / MCP stdio framing ----
 def _read_message(stream: io.BufferedReader) -> dict | None:
-    """读取一条 Content-Length 分帧的 JSON-RPC 消息。"""
-    headers = {}
-    while True:
-        line = stream.readline()
-        if not line:
-            return None  # EOF
-        line = line.decode("utf-8", "replace")
-        if line in ("\r\n", "\n"):
-            break
-        if ":" in line:
-            k, _, v = line.partition(":")
-            headers[k.strip().lower()] = v.strip()
-    length = int(headers.get("content-length", "0"))
-    if length <= 0:
+    """Read one newline-delimited JSON-RPC message from an MCP stdio stream."""
+    line = stream.readline()
+    if not line:
         return None
-    payload = stream.read(length)
     try:
-        return json.loads(payload.decode("utf-8", "replace"))
+        message = json.loads(line.decode("utf-8", "replace"))
     except json.JSONDecodeError:
         return None
+    if not isinstance(message, dict):
+        return None
+    return message
 
 
 def _write_message(stream: io.BufferedWriter, msg: dict):
     payload = json.dumps(msg, ensure_ascii=False).encode("utf-8")
-    stream.write(b"Content-Length: %d\r\n\r\n" % len(payload))
-    stream.write(payload)
+    stream.write(payload + b"\n")
     stream.flush()
 
 
