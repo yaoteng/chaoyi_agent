@@ -3,7 +3,7 @@
 > 本文是 `潮驿Agent一周千星战术战略书.md` 的**可操作执行版**。战略书讲"为什么 / 打法"，本文讲"每天具体做什么、发什么、盯什么指标"。
 > 仓库发布后，按 D-1 → D0~D6 顺序执行。**所有发帖文案见 `launch/posts/`**。
 
-> ⚠️ **定位更新（2026-09-05）**：项目已从「开源社区 agent 化」转向「**分销业务 agent 化**」。本文的**节奏 / Gate / KPI 框架仍可用**，但发帖文案需统一替换为分销口径。`posts/01_juejin.md` 已改写为分销版；`posts/02~10` 仍保留原「社群」措辞，**发布前请按 01 的口径同步改写**（另见《决策确认与执行记录》第五节）。
+> ✅ **定位更新（2026-09-05）**：项目已从「开源社区 agent 化」转向「**分销业务 agent 化**」。`posts/01~10`、`demo-script.md` 与本文正文均已改写为分销口径（参考 01 与《决策确认与执行记录》第五节）。**节奏 / Gate / KPI 框架不变**，可直接按 D-1 → D0~D6 执行。
 
 ---
 
@@ -14,7 +14,7 @@
 | `gh` 已登录 | `gh auth status` → 显示 `Logged in to github.com` | ☐ |
 | git 身份已设 | `git config user.name` / `user.email` 非空 | ☐ |
 | 仓库已发布 | 运行 `bash scripts/publish_to_github.sh`，得到 `https://github.com/yaoteng/chaoyi_agent` | ☐ |
-| 仓库元信息 | About 文案 + 12 Topics + Release v0.1.0 已建 | ☐ |
+| 仓库元信息 | About 文案 + 11 Topics + Release v0.1.0 已建 | ☐ |
 | 一张主图 | `docs/screenshot.png`（README 顶部示意图）已放 | ☐ |
 | 一个 demo | 30 秒演示视频/动图（见 `demo-script.md`）已录 | ☐ |
 
@@ -42,7 +42,7 @@
 ## 2. D-1 备料清单（发布当天之前做完）
 
 - [ ] README 顶部放一张架构/场景示意图（`docs/screenshot.png`），让访客 3 秒看懂。
-- [ ] 录制 30 秒 demo（RustyCache 样例跑通 5 个 Skill，见 `demo-script.md`），导出 `demo.mp4` + 抽一帧做封面。
+- [ ] 录制 30 秒 demo（云栈分销样例跑通 5 个分销 Skill，见 `demo-script.md`），导出 `demo.mp4` + 抽一帧做封面。
 - [ ] 把 `posts/` 下 10 篇**各复制到对应平台草稿箱**，只差"点发布"，避免当天手忙脚乱。
 - [ ] 准备 3 条"钩子"短视频脚本（15s/30s/60s 各一），D3 用。
 - [ ] 列一份"潜在助力名单"（好友 / 同行 KOL / 社区群），D0–D1 私信请他们来 star（**不要刷量，真实邀请**）。
@@ -70,7 +70,7 @@
 3. 把 D0/D1 的高赞评论截图，作为"社区反馈"发 X 置顶。
 
 ### D3 · 视频
-1. 发 B站 `posts/demo-script.md` 对应的 30 秒视频，标题带关键词"开源 Agent / 社群智能体"。
+1. 发 B站 `posts/demo-script.md` 对应的 30 秒视频，标题带关键词"开源 Agent / 分销智能体"。
 2. 视频简介 + 评论区置顶仓库链接。
 3. 同一视频截 15s 版发小红书（D5）、X（D2 已发文字，可补视频）。
 
@@ -104,12 +104,12 @@
 
 ## 5. 合规红线（贯穿全程）
 - 开源代码分发**不需要**直播类牌照；但**不得以开源为名实际运营无牌公开直播服务**（本项目已彻底归档直播代码，无此风险）。
-- Skill 内容不得含绕过社区行为准则、伪造贡献、自动化刷量等能力（见 `CONTRIBUTING.md`）。
+- Skill 内容不得含绕过短信/外呼合规、伪造经营数据、骚扰式群发、自动化刷量等能力（见 `CONTRIBUTING.md`）。
 - 所有数据/截图须脱敏，不得泄露用户隐私。
 
 ---
 
 ## 6. 发布后必做（工程侧）
-- 开 `Discussions` 作为"社区 agent 化"问答区。
+- 开 `Discussions` 作为"分销业务 agent 化"问答区。
 - 建 `good first issue` 若干（翻译某 Skill、补一个垂类 Skill）。
 - 每周发一个 patch Release，保持活跃度（GitHub 活跃度影响 Trending）。

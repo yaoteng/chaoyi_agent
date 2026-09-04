@@ -7,25 +7,26 @@
 
 推荐一个可能被低估的：**潮驿 Agent（Chaoyi Agent）**。
 
-大部分 Agent 项目（LangChain、Dify、AutoGPT）都在解决"怎么造一个更强的 Agent"。但有一个真实且普遍的需求被忽略了：**已经有的开源社群，怎么低成本地"agent 化"？**
+大部分 Agent 项目（LangChain、Dify、AutoGPT）都在解决"怎么造一个更强的 Agent"。但有一个真实且普遍的需求被忽略了：**已经有的分销团队，怎么低成本地"agent 化"？**
 
-一个 2–3k star 的小社群，维护者常常 1–3 人，真正拖垮他们的不是写代码，而是：
-- 每周几十个 issue 要分类、贴标签、回
-- 发版前要写 release notes
-- 要把文档翻译成英文
-- 要记得感谢每个贡献者
+一个中等规模的快消分销商，下游 1–2 千家门店、几个业务员、一名渠道经理，真正拖垮他们的不是谈大客户，而是：
+- 新经销商签约后资料反复补交、培训没人跟、首单拖三周
+- 政策 / 活动 / 回款催办，群发打开率个位数，电话硬打
+- 渠道健康度靠月底拉表，红黄客户经常拖到流失才发现
+- 月结对账两人花三天，还常有"发了没收到"的扯皮
+- 业务员拜访凭感觉，谁该先跑、进门说什么全靠经验
 
 这些杂活单价低、频率高、极其打断心流。
 
 潮驿的做法是提供一组**跨宿主开源 Skill**：
-- `community-onboarding`（入驻引导）
-- `issue-triage`（issue 管家）
-- `release-notes`（发布说明）
-- `doc-localization`（文档本地化）
-- `contributor-recognition`（贡献致谢）
+- `distributor-onboarding`（经销商入驻引导）
+- `reach-campaign`（多渠道触达编排）
+- `channel-inspection`（渠道健康巡检）
+- `order-inventory-reconcile`（订单库存对账）
+- `visit-plan`（拜访计划编排）
 
-兼容 Skills 1.0 + MCP 0.4，Claude Code / Cursor / WorkBuddy / Codex 都能直接加载；MIT 协议、零依赖、fork 即改。仓库里还有一个完整样例，演示怎么把月运营工时从 40h 压到 6h。
+兼容 Skills 1.0 + MCP 0.4，Claude Code / Cursor / WorkBuddy / Codex 都能直接加载；MIT 协议、零依赖、fork 即改。仓库里还有一个完整样例（虚构快消分销商"云栈分销"），演示怎么把月运营工时从 40h 压到 6h。
 
 地址：https://github.com/yaoteng/chaoyi_agent
 
-它不是"通用框架"，而是把"开源社群运营"这件具体的事做透——如果你也在维护小社群，值得看看。
+它不是"通用框架"，而是把"分销业务运营"这件具体的事做透——如果你也在带分销 / 渠道团队，值得看看。
