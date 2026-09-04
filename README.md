@@ -46,8 +46,9 @@ cp -r skills/issue-triage ~/.workbuddy/skills/        # WorkBuddy（用户级）
 # 或 cp -r skills/issue-triage .claude/skills/        # Claude Code
 # 或 cp -r skills/issue-triage .cursor/skills/        # Cursor
 
-# 方式二（规划中）：通过 MCP 网关统一加载
-# mcp-server 读取 skills/ 下全部 SKILL.md，按需注入上下文
+# 方式二（推荐，不污染宿主目录）：通过 MCP 网关统一加载
+# 见 mcp-server/README.md：在宿主的 mcp 配置里指向 python mcp-server/server.py
+# 网关自动把 skills/ 下全部 SKILL.md 暴露为 MCP 工具，按需注入上下文
 ```
 
 导入后，对智能体说「帮我把本周的 issue 分类并起草回复」，它就会调用 `issue-triage` 技能。
@@ -70,6 +71,16 @@ chaoyi_agent/
 │  ├─ release-notes/
 │  ├─ doc-localization/
 │  └─ contributor-recognition/
+├─ mcp-server/                   # ★ Agent 运行时：零依赖 MCP 网关，把 Skills 暴露为工具
+│  ├─ server.py                  # 纯标准库实现（initialize / tools/list / tools/call）
+│  └─ README.md                  # 运行与接入（Claude Code / Cursor）
+├─ agents/                       # ★ 多角色 Agent 模板（编排 Skills 成常驻数字社工）
+│  ├─ README.md                  # 角色索引
+│  ├─ onboarding-guide/          # 入驻向导 → community-onboarding
+│  ├─ issue-steward/             # 议题管家 → issue-triage
+│  ├─ translation-coordinator/   # 翻译协调员 → doc-localization
+│  └─ kudos-officer/            # 致谢官 → contributor-recognition
+├─ scripts/                      # 发布脚本 + Skills 格式校验
 ├─ 潮驿项目重新定位方案.md        # 战略定位（为何从直播转向 agent）
 ├─ 潮驿Agent项目竞品分析.md      # 竞品分析（Agent/Skill 赛道）
 ├─ 潮驿Agent一周千星战术战略书.md # 开源推广作战书
@@ -119,7 +130,7 @@ chaoyi_agent/
     <path d="M501 105 l14 0 l0 -4 l8 8 l-8 8 l0 -4 l-14 0 z"/>
   </g>
 
-  <text x="10" y="208" font-size="11" fill="#607d8b">规划中：MCP 0.4 网关把 Skills 统一暴露为工具，跨宿主按需注入上下文。</text>
+  <text x="10" y="208" font-size="11" fill="#607d8b">已落地：MCP 0.4 网关（mcp-server/，零依赖）把 Skills 统一暴露为工具，跨宿主按需注入上下文。</text>
 </svg>
 
 ### 校验 Skills 格式
@@ -135,8 +146,8 @@ python scripts/validate_skills.py
 ## 路线图
 
 - [x] **Skills 库首发**（5 个社群技能 + 模板）
-- [ ] MCP 网关：把 skills 暴露为统一工具协议
-- [ ] Agents 多角色模板（入驻向导 / 议题管家 / 翻译协调员 / 致谢官）
+- [x] **MCP 网关**：零依赖运行时，把 skills 暴露为统一 MCP 工具 → [mcp-server/](mcp-server/README.md)
+- [x] **Agents 多角色模板**（入驻向导 / 议题管家 / 翻译协调员 / 致谢官）→ [agents/](agents/README.md)
 - [ ] 《30 天社区 agent 化》手册
 - [x] 参考改造样例（首个被 agent 化的开源社群）→ [examples/reference-community](examples/reference-community/README.md)
 
