@@ -60,15 +60,30 @@ if gh repo view "$REPO_NAME" >/dev/null 2>&1; then
     echo "    已添加 origin -> https://github.com/$GH_USER/$REPO_NAME.git"
   fi
   git push -u origin main
-  # 已存在分支也要补 description（首次 gh repo create 才会带 desc）
-  gh repo edit "$REPO_NAME" --description "$REPO_DESC" --homepage "https://github.com/$GH_USER/$REPO_NAME" >/dev/null 2>&1 || true
-  echo "    已补 description / homepage"
 else
   gh repo create "$REPO_NAME" --public --description "$REPO_DESC" --push --source . --remote origin
 fi
 
-echo "== 4/6 设置 Topics =="
-for t in $TOPICS; do gh repo edit "$REPO_NAME" --add-topic "$t" >/dev/null 2>&1 || true; done
+echo "== 4/6 设置仓库元信息 =="
+# 4a) description / homepage：PATCH 仓库（可靠）
+gh api -X PATCH "repos/$GH_USER/$REPO_NAME" --input - <<EOF
+{
+  "description": "$REPO_DESC",
+  "homepage": "https://github.com/$GH_USER/$REPO_NAME"
+}
+EOF
+echo "    已设置 description / homepage"
+
+# 4b) topics：必须用专用 endpoint PUT /topics（PATCH 仓库带 topics 字段会被 GitHub 静默忽略）
+#     body 字段是 "names"（数组），并带 topic 预览头确保生效
+TOPICS_JSON="[$(echo $TOPICS | sed 's/[^ ]*/"&"/g' | sed 's/ /,/g')]"
+gh api -X PUT "repos/$GH_USER/$REPO_NAME/topics" \
+  -H "Accept: application/vnd.github.mercy-preview+json" \
+  --input - <<EOF
+{
+  "names": $TOPICS_JSON
+}
+EOF
 echo "    已设置 Topics: $TOPICS"
 
 echo "== 5/6 打 tag + 创建 Release v0.1.0 =="

@@ -77,24 +77,60 @@ chaoyi_agent/
 └─ archive/                      # 早期「直播方向」文档（已归档，仅供参考）
 ```
 
-## 仓库（已上线）
+## 已上线
 
-🔗 **https://github.com/yaoteng/chaoyi_agent** —— 公开仓库，代码 / MIT License / v0.1.0 Release 均已上线。
+🔗 **https://github.com/yaoteng/chaoyi_agent** —— 公开仓库，代码 / MIT License / v0.1.0 Release 均已上线，已配置 11 个 Topics 与仓库描述。
 
-> ⚠️ 若你看到仓库**描述（description）为空、没有 Topics 标签**，在本地项目目录跑下面这条补齐（只需一次，需 `gh auth login`）：
->
-> ```bash
-> gh repo edit yaoteng/chaoyi_agent \
->   --description "面向开源社区的 Agent/Skill 工具箱 + 社区 agent 化改造方法论。5 个开箱即用社群 Skill，兼容 Skills 1.0 + MCP 0.4，跨宿主运行，MIT。" \
->   --homepage "https://github.com/yaoteng/chaoyi_agent" \
->   --add-topic ai-agents --add-topic skills --add-topic mcp --add-topic open-source \
->   --add-topic community --add-topic developer-tools --add-topic llm --add-topic automation \
->   --add-topic chinese --add-topic agent-framework --add-topic self-hosted
-> ```
->
-> 这样 GitHub 搜索与社媒卡片才能正确曝光——**发帖冲星前务必先执行**。
+### 架构一览
 
-或重跑发布脚本（已对「仓库已存在」做健壮处理，会自动补 description + topics）：`bash scripts/publish_to_github.sh`。
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 230" width="100%" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif">
+  <text x="10" y="26" font-size="15" font-weight="700" fill="#1f2328">潮驿 Chaoyi Agent · 社区 agent 化链路</text>
+
+  <rect x="10" y="50" width="150" height="110" rx="10" fill="#e3f2fd" stroke="#1976d2" stroke-width="1.5"/>
+  <text x="85" y="76" font-size="13" font-weight="700" fill="#0d47a1" text-anchor="middle">开源社群</text>
+  <text x="85" y="98" font-size="11" fill="#37474f" text-anchor="middle">人少事多</text>
+  <text x="85" y="116" font-size="11" fill="#37474f" text-anchor="middle">传承难 · 留人难</text>
+  <text x="85" y="134" font-size="11" fill="#37474f" text-anchor="middle">运营靠手工</text>
+
+  <rect x="180" y="50" width="150" height="110" rx="10" fill="#e8f5e9" stroke="#388e3c" stroke-width="1.5"/>
+  <text x="255" y="76" font-size="13" font-weight="700" fill="#1b5e20" text-anchor="middle">潮驿 Agent</text>
+  <text x="255" y="98" font-size="11" fill="#37474f" text-anchor="middle">Skills 库</text>
+  <text x="255" y="116" font-size="11" fill="#37474f" text-anchor="middle">改造方法论</text>
+  <text x="255" y="134" font-size="11" fill="#37474f" text-anchor="middle">《30 天》手册</text>
+
+  <rect x="350" y="40" width="150" height="130" rx="10" fill="#fff3e0" stroke="#f57c00" stroke-width="1.5"/>
+  <text x="425" y="64" font-size="13" font-weight="700" fill="#e65100" text-anchor="middle">5× 数字社工</text>
+  <text x="425" y="84" font-size="10.5" fill="#37474f" text-anchor="middle">community-onboarding</text>
+  <text x="425" y="102" font-size="10.5" fill="#37474f" text-anchor="middle">issue-triage</text>
+  <text x="425" y="120" font-size="10.5" fill="#37474f" text-anchor="middle">release-notes</text>
+  <text x="425" y="138" font-size="10.5" fill="#37474f" text-anchor="middle">doc-localization</text>
+  <text x="425" y="156" font-size="10.5" fill="#37474f" text-anchor="middle">contributor-recognition</text>
+
+  <rect x="520" y="40" width="150" height="130" rx="10" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="1.5"/>
+  <text x="595" y="64" font-size="13" font-weight="700" fill="#4a148c" text-anchor="middle">宿主即跑</text>
+  <text x="595" y="84" font-size="10.5" fill="#37474f" text-anchor="middle">Claude Code</text>
+  <text x="595" y="102" font-size="10.5" fill="#37474f" text-anchor="middle">WorkBuddy</text>
+  <text x="595" y="120" font-size="10.5" fill="#37474f" text-anchor="middle">Cursor</text>
+  <text x="595" y="138" font-size="10.5" fill="#37474f" text-anchor="middle">Codex</text>
+
+  <g fill="#90a4ae">
+    <path d="M161 105 l14 0 l0 -4 l8 8 l-8 8 l0 -4 l-14 0 z"/>
+    <path d="M331 105 l14 0 l0 -4 l8 8 l-8 8 l0 -4 l-14 0 z"/>
+    <path d="M501 105 l14 0 l0 -4 l8 8 l-8 8 l0 -4 l-14 0 z"/>
+  </g>
+
+  <text x="10" y="208" font-size="11" fill="#607d8b">规划中：MCP 0.4 网关把 Skills 统一暴露为工具，跨宿主按需注入上下文。</text>
+</svg>
+
+### 校验 Skills 格式
+
+仓库内置格式校验，确保每一个 Skill 都符合 Skills 1.0 frontmatter 规范（缺字段会直接报错）：
+
+```bash
+python scripts/validate_skills.py
+```
+
+或重跑发布脚本：`bash scripts/publish_to_github.sh`。
 
 ## 路线图
 
