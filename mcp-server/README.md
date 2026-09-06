@@ -49,7 +49,7 @@ python mcp-server/server.py
 python /绝对路径/chaoyi_agent/mcp-server/server.py
 ```
 
-接入后，对智能体说「给华东区账期超 60 天的经销商排一轮回款催办触达」，它会通过 MCP 调用 `reach-campaign` 工具，
+接入后，对智能体说「给新签的 3 个美食主播按 streamer-onboarding 生成入驻阶梯」，它会通过 MCP 调用 `streamer-onboarding` 工具，
 拿到技能正文作为执行指引。
 
 ## 工具清单（自动生成）
@@ -59,11 +59,11 @@ python /绝对路径/chaoyi_agent/mcp-server/server.py
 
 | 工具名 | 对应 Skill |
 |---|---|
-| `distributor-onboarding` | 经销商入驻引导 |
-| `reach-campaign` | 多渠道触达编排 |
-| `channel-inspection` | 渠道健康巡检 |
-| `order-inventory-reconcile` | 订单库存对账 |
-| `visit-plan` | 拜访计划编排 |
+| `streamer-onboarding` | 主播入驻引导 |
+| `live-show-plan` | 直播内容策划与排期 |
+| `live-room-ops` | 直播间互动运营 |
+| `community-moderation` | 社区内容审核与风控 |
+| `audience-growth` | 观众运营与数据复盘 |
 
 ## 本地自测
 
@@ -92,4 +92,4 @@ PY
 
 - [x] MCP 网关：把 skills 暴露为统一工具协议 ← **本目录**
 - [ ] Agents 多角色模板（见 [`../agents/`](../agents/)）
-- [ ] 《30 天分销 agent 化》手册
+- [ ] 《30 天直播社区 agent 化》手册

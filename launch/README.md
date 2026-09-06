@@ -7,7 +7,7 @@
 |---|---|
 | `runbook.md` | **每日作战手册**：Gate 检查 → D-1 备料 → D0–D6 逐日动作 + 应急 + 合规 |
 | `posts/01_juejin.md` | 掘金长文（D0） |
-| `posts/02_v2ex.md` | V2EX（D0） |
+| `posts/02_oschina.md` | 开源中国 OSChina（D0） |
 | `posts/03_zhihu.md` | 知乎（D0） |
 | `posts/04_showhn.md` | Show HN（D1） |
 | `posts/05_reddit.md` | Reddit（D1） |
