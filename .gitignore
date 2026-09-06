@@ -12,3 +12,8 @@ node_modules/
 # local env
 .env
 .env.local
+
+# demo render intermediates
+launch/frames/
+launch/shot_*.png
+launch/verify_*.png
